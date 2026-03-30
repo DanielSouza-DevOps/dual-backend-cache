@@ -1,0 +1,29 @@
+services:
+  localstack:
+    image: localstack/localstack:3.8.1
+    ports:
+      - "4566:4566"
+    environment:
+      SERVICES: "lambda,iam,apigateway,apigatewayv2,logs,sts,s3"
+      DEBUG: "0"
+    volumes:
+      - localstack-data:/var/lib/localstack
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  node-api:
+    build: ./node-app
+    ports:
+      - "3000:3000"
+    environment:
+      PORT: "3000"
+      CACHE_TTL_SEC: "10"
+
+  python-api:
+    build: ./python-app
+    ports:
+      - "3001:3001"
+    environment:
+      CACHE_TTL_SEC: "60"
+
+volumes:
+  localstack-data:

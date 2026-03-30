@@ -1,0 +1,27 @@
+aws_region = "us-east-1"
+
+# --- LocalStack
+# use_localstack      = true
+# localstack_endpoint = "http://127.0.0.1:4566"
+
+# --- Real AWS
+# use_localstack = false
+
+# apply builds .zip locally, uploads to S3 (Terraform-managed bucket, versioning on),
+# and creates Lambdas referencing bucket + key + version_id.
+# lambda_pip_command = "python3 -m pip"
+# lambda_artifacts_bucket_force_destroy = false  # production: do not delete bucket with objects on destroy
+
+project_name             = "dual-backend-cache"
+environment              = "dev"
+lambda_timeout_seconds   = 10
+lambda_memory_node       = 256
+lambda_memory_python     = 256
+# cache_ttl_seconds_node   = 10
+# cache_ttl_seconds_python = 60
+lambda_architecture      = "x86_64"
+# lambda_runtime_node_zip   = "nodejs18.x"
+# lambda_runtime_python_zip = "python3.11"
+
+# alb_route_node   = "/node"
+# alb_route_python = "/python"
